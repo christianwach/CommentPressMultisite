@@ -168,7 +168,7 @@ class CommentPressBuddyPress {
 				__( 'Commentpress for BuddyPress', 'cp-multisite' ), 
 				'manage_options', 
 				'cpmu_admin_page_bp', 
-				array( &$this, 'admin_page' )
+				array( $this, 'admin_page' )
 				
 			);
 			
@@ -182,7 +182,7 @@ class CommentPressBuddyPress {
 				__( 'CommentPress Setup', 'cp-multisite' ), 
 				'manage_options', 
 				'cpmu_admin_page_bp', 
-				array( &$this, 'admin_page' )
+				array( $this, 'admin_page' )
 				
 			);
 		
@@ -190,7 +190,7 @@ class CommentPressBuddyPress {
 		
 		// add styles only on bp-groupblog admin page, see:
 		// http://codex.wordpress.org/Function_Reference/wp_enqueue_script#Load_scripts_only_on_plugin_pages
-		add_action( 'admin_print_styles-'.$page, array( &$this, 'add_admin_styles' ) );
+		add_action( 'admin_print_styles-'.$page, array( $this, 'add_admin_styles' ) );
 	
 	}
 	
@@ -697,7 +697,7 @@ class CommentPressBuddyPress {
 
 
 		// prevent from firing again
-		remove_action( 'bp_activity_before_save', array( &$this, 'groupblog_custom_comment_activity' ) );
+		remove_action( 'bp_activity_before_save', array( $this, 'groupblog_custom_comment_activity' ) );
 		
 		
 		// --<
@@ -737,7 +737,7 @@ class CommentPressBuddyPress {
 		
 		
 		// prevent from firing again
-		remove_action( 'bp_activity_after_save', array( &$this, 'groupblog_custom_comment_meta' ) );
+		remove_action( 'bp_activity_after_save', array( $this, 'groupblog_custom_comment_meta' ) );
 		
 		
 		
@@ -928,7 +928,7 @@ class CommentPressBuddyPress {
 		
 		
 		// prevent from firing again
-		remove_action( 'bp_activity_before_save', array( &$this, 'groupblog_custom_post_activity' ) );
+		remove_action( 'bp_activity_before_save', array( $this, 'groupblog_custom_post_activity' ) );
 		
 		
 		
@@ -1292,49 +1292,49 @@ class CommentPressBuddyPress {
 	function _register_hooks() {
 		
 		// enable html comments and content for authors
-		add_action( 'init', array( &$this, 'allow_html_content' ) );
+		add_action( 'init', array( $this, 'allow_html_content' ) );
 		
 		// add some tags to the allowed tags in activities
-		add_filter( 'bp_activity_allowed_tags', array( &$this, 'activity_allowed_tags' ), 20 );
+		add_filter( 'bp_activity_allowed_tags', array( $this, 'activity_allowed_tags' ), 20 );
 		
 		// allow comment authors to edit their own comments
-		add_filter( 'map_meta_cap', array( &$this, 'enable_comment_editing' ), 10, 4 );
+		add_filter( 'map_meta_cap', array( $this, 'enable_comment_editing' ), 10, 4 );
 
 		// amend comment activity
-		add_filter( 'pre_comment_approved', array( &$this, 'pre_comment_approved' ), 99, 2 );
+		add_filter( 'pre_comment_approved', array( $this, 'pre_comment_approved' ), 99, 2 );
 		//add_action( 'preprocess_comment', 'my_check_comment', 1 );
 		
 		// override "publicness" of groupblogs
-		add_filter( 'bp_is_blog_public', array( &$this, 'is_blog_public' ), 20, 1 );
+		add_filter( 'bp_is_blog_public', array( $this, 'is_blog_public' ), 20, 1 );
 	
 		// amend activity
-		add_action( 'bp_loaded', array( &$this, '_groupblog_activity_mods' ), 30 );
+		add_action( 'bp_loaded', array( $this, '_groupblog_activity_mods' ), 30 );
 	
 		// get group avatar when listing groupblogs
-		add_filter( 'bp_get_blog_avatar', array( &$this, 'get_blog_avatar' ), 20, 3 );
+		add_filter( 'bp_get_blog_avatar', array( $this, 'get_blog_avatar' ), 20, 3 );
 		
 		// filter bp-groupblog defaults
-		add_filter( 'bp_groupblog_subnav_item_name', array( &$this, 'filter_blog_name' ), 20 );
-		add_filter( 'bp_groupblog_subnav_item_slug', array( &$this, 'filter_blog_slug' ), 20 );
+		add_filter( 'bp_groupblog_subnav_item_name', array( $this, 'filter_blog_name' ), 20 );
+		add_filter( 'bp_groupblog_subnav_item_slug', array( $this, 'filter_blog_slug' ), 20 );
 		
 		// override BP title of "visit site" button in blog lists
-		add_filter( 'bp_get_blogs_visit_blog_button', array( &$this, 'get_blogs_visit_blog_button' ), 20 );
+		add_filter( 'bp_get_blogs_visit_blog_button', array( $this, 'get_blogs_visit_blog_button' ), 20 );
 		
 		// we can remove groupblogs from the blog list, but cannot update the total_blog_count_for_user
 		// that is displayed on the tab *before* the blog list is built - hence filter disabled for now
-		//add_filter( 'bp_has_blogs', array( &$this, 'remove_groupblog_from_loop' ), 20, 2 );
+		//add_filter( 'bp_has_blogs', array( $this, 'remove_groupblog_from_loop' ), 20, 2 );
 		
 		// add form elements to groupblog form
-		add_action( 'signup_blogform', array( &$this, 'signup_blogform' ) );
+		add_action( 'signup_blogform', array( $this, 'signup_blogform' ) );
 		
 		// add form elements to signup form
-		add_action( 'cpmu_bp_after_blog_details_fields', array( &$this, 'signup_blogform' ) );
+		add_action( 'cpmu_bp_after_blog_details_fields', array( $this, 'signup_blogform' ) );
 		
 		// activate blog-specific CommentPress plugin
-		add_action( 'wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 12, 6 ); // includes/ms-functions.php
+		add_action( 'wpmu_new_blog', array( $this, 'wpmu_new_blog' ), 12, 6 ); // includes/ms-functions.php
 	
 		// register any public styles
-		add_action( 'wp_enqueue_scripts', array( &$this, 'add_frontend_styles' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'add_frontend_styles' ), 20 );
 	
 		// is this the back end?
 		if ( is_admin() ) {
@@ -1343,14 +1343,15 @@ class CommentPressBuddyPress {
 			if ( function_exists( 'bp_core_admin_hook' ) ) {
 	
 				// add menu to BuddyPress submenu
-				add_action( bp_core_admin_hook(), array( &$this, 'add_admin_menu' ), 30 );
+				add_action( bp_core_admin_hook(), array( $this, 'add_admin_menu' ), 30 );
 			
 			}
 		
 		} else {
 		
-			// add filter options for the post and comment activities
-			add_action( 'bp_include', array( &$this, '_groupblog_filter_options' ) );
+			// add filter options for the post and comment activities as late as we can
+			// so that bp-groupblog's action can be removed
+			add_action( 'bp_setup_globals', array( $this, '_groupblog_filter_options' ) );
 			
 		}
 		
@@ -1372,14 +1373,14 @@ class CommentPressBuddyPress {
 		remove_action( 'bp_group_activity_filter_options', 'bp_groupblog_posts' );
 		
 		// add our consistent one
-		add_action( 'bp_activity_filter_options', array( &$this, 'groupblog_posts_filter_option' ) );
-		add_action( 'bp_group_activity_filter_options', array( &$this, 'groupblog_posts_filter_option' ) );
-		add_action( 'bp_member_activity_filter_options', array( &$this, 'groupblog_posts_filter_option' ) );
+		add_action( 'bp_activity_filter_options', array( $this, 'groupblog_posts_filter_option' ) );
+		add_action( 'bp_group_activity_filter_options', array( $this, 'groupblog_posts_filter_option' ) );
+		add_action( 'bp_member_activity_filter_options', array( $this, 'groupblog_posts_filter_option' ) );
 		
 		// add our comments
-		add_action( 'bp_activity_filter_options', array( &$this, 'groupblog_comments_filter_option' ) );
-		add_action( 'bp_group_activity_filter_options', array( &$this, 'groupblog_comments_filter_option' ) );
-		add_action( 'bp_member_activity_filter_options', array( &$this, 'groupblog_comments_filter_option' ) );
+		add_action( 'bp_activity_filter_options', array( $this, 'groupblog_comments_filter_option' ) );
+		add_action( 'bp_group_activity_filter_options', array( $this, 'groupblog_comments_filter_option' ) );
+		add_action( 'bp_member_activity_filter_options', array( $this, 'groupblog_comments_filter_option' ) );
 		
 	}
 	
@@ -1396,21 +1397,21 @@ class CommentPressBuddyPress {
 	function _groupblog_activity_mods() {
 		
 		// allow lists in activity content
-		add_action( 'bp_activity_allowed_tags', array( &$this, '_activity_allowed_tags' ), 20, 1 );
+		add_action( 'bp_activity_allowed_tags', array( $this, '_activity_allowed_tags' ), 20, 1 );
 		
 		// ditch bp-groupblog's post activity action
 		remove_action( 'bp_activity_before_save', 'bp_groupblog_set_group_to_post_activity' );
 
 		// add custom comment activity to bp-groupblog
-		add_action( 'bp_activity_before_save', array( &$this, 'groupblog_custom_comment_activity' ), 20, 1 );
+		add_action( 'bp_activity_before_save', array( $this, 'groupblog_custom_comment_activity' ), 20, 1 );
 		
 		// implement our own post activity
-		add_action( 'bp_activity_before_save', array( &$this, 'groupblog_custom_post_activity' ), 20, 1 );
+		add_action( 'bp_activity_before_save', array( $this, 'groupblog_custom_post_activity' ), 20, 1 );
 
 		// these don't seem to fire to allow us to add our meta values for the items...
 		// instead, I'm trying to store the blog_type as group meta data
-		//add_action( 'bp_activity_after_save', array( &$this, 'groupblog_custom_comment_meta' ), 20, 1 );
-		//add_action( 'bp_activity_after_save', array( &$this, 'groupblog_custom_post_meta' ), 20, 1 );
+		//add_action( 'bp_activity_after_save', array( $this, 'groupblog_custom_comment_meta' ), 20, 1 );
+		//add_action( 'bp_activity_after_save', array( $this, 'groupblog_custom_post_meta' ), 20, 1 );
 		
 	}
 	
