@@ -178,8 +178,8 @@ class CommentPressBuddyPress {
 			$page = add_submenu_page( 
 			
 				'bp-general-settings', 
-				__( 'CommentPress Setup', 'cp-multisite' ), 
-				__( 'CommentPress Setup', 'cp-multisite' ), 
+				__( 'Commentpress Setup', 'cp-multisite' ), 
+				__( 'Commentpress Setup', 'cp-multisite' ), 
 				'manage_options', 
 				'cpmu_admin_page_bp', 
 				array( $this, 'admin_page' )
@@ -1330,7 +1330,7 @@ class CommentPressBuddyPress {
 		// add form elements to signup form
 		add_action( 'cpmu_bp_after_blog_details_fields', array( $this, 'signup_blogform' ) );
 		
-		// activate blog-specific CommentPress plugin
+		// activate blog-specific Commentpress plugin
 		add_action( 'wpmu_new_blog', array( $this, 'wpmu_new_blog' ), 12, 6 ); // includes/ms-functions.php
 	
 		// register any public styles
@@ -1473,13 +1473,13 @@ class CommentPressBuddyPress {
 			// NOTE: need to check that our context is right
 			
 			// define title
-			$title = __( 'CommentPress Options', 'cp-multisite' );
+			$title = __( 'Commentpress Options', 'cp-multisite' );
 			
 			// define text
-			$text = __( 'When you create a group blog, you can choose to enable it as a CommentPress blog. This is a "one time only" option because you cannot disable CommentPress from here once the group blog is created. If you choose an existing blog as a group blog, setting this option will have no effect.', 'cp-multisite' );
+			$text = __( 'When you create a group blog, you can choose to enable it as a Commentpress blog. This is a "one time only" option because you cannot disable Commentpress from here once the group blog is created. If you choose an existing blog as a group blog, setting this option will have no effect.', 'cp-multisite' );
 			
 			// define enable label
-			$enable_label = __( 'Enable CommentPress', 'cp-multisite' );
+			$enable_label = __( 'Enable Commentpress', 'cp-multisite' );
 			
 			
 			
@@ -1611,7 +1611,7 @@ class CommentPressBuddyPress {
 		
 		
 		// ----------------------
-		// Activate CommentPress
+		// Activate Commentpress
 		// ----------------------
 		
 		// no longer activate the theme here - moved to the Commentpress plugin
@@ -1787,13 +1787,13 @@ class CommentPressBuddyPress {
 	function _create_blog_options() {
 	
 		// define title
-		$title = __( 'CommentPress Options', 'cp-multisite' );
+		$title = __( 'Commentpress Options', 'cp-multisite' );
 		
 		// define text
 		$text = __( 'Do you want to make the new site a Commentpress document?', 'cp-multisite' );
 		
 		// define enable label
-		$enable_label = __( 'Enable CommentPress', 'cp-multisite' );
+		$enable_label = __( 'Enable Commentpress', 'cp-multisite' );
 		
 		
 		
@@ -1858,7 +1858,7 @@ class CommentPressBuddyPress {
 			// show it
 			$type_html = '
 			
-			<div class="dropdown">
+			<div class="dropdown cp-workflow-type">
 				<label for="cp_blog_type">'.$type_label.'</label> <select id="cp_blog_type" name="cp_blog_type">
 				
 				'.$type_options.'
@@ -1916,7 +1916,7 @@ class CommentPressBuddyPress {
 		
 		
 		// ----------------------
-		// Activate CommentPress
+		// Activate Commentpress
 		// ----------------------
 
 		// get Commentpress plugin

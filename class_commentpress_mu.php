@@ -327,13 +327,13 @@ class CommentPressMultiSite {
 		if ( !isset( $GLOBALS['bp'] ) ) {
 		
 			// define title
-			$title = __( 'CommentPress:', 'cp-multisite' );
+			$title = __( 'Commentpress:', 'cp-multisite' );
 			
 			// define text
 			$text = __( 'Do you want to make the new site a Commentpress document?', 'cp-multisite' );
 			
 			// define enable label
-			$enable_label = __( 'Enable CommentPress', 'cp-multisite' );
+			$enable_label = __( 'Enable Commentpress', 'cp-multisite' );
 			
 			
 			
@@ -512,7 +512,7 @@ class CommentPressMultiSite {
 		// add form elements to signup form
 		add_action( 'signup_blogform', array( &$this, 'signup_blogform' ) );
 		
-		// activate blog-specific CommentPress plugin
+		// activate blog-specific Commentpress plugin
 		add_action('wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 12, 6); // includes/ms-functions.php
 	
 		// is this the back end?
@@ -548,7 +548,7 @@ class CommentPressMultiSite {
 		
 		
 		// ----------------------
-		// Activate CommentPress
+		// Activate Commentpress
 		// ----------------------
 
 		// get Commentpress plugin
