@@ -1095,13 +1095,30 @@ class CommentPressBuddyPress {
 	
 	
 	/** 
+	 * @description: override Commentpress "Title Page"
+	 * @todo: 
+	 *
+	 */
+	function filter_nav_title_page_title( $title ) {
+		
+		// --<
+		return __( 'Document Home Page', 'cpmsextras' );
+	
+	}
+	
+	
+	
+	
+	
+
+	/** 
 	 * @description: remove group blogs from blog list
 	 * @todo: 
 	 *
 	 */
 	function remove_groupblog_from_loop( $b, $blogs ) {
 	
-		print_r( array( 'b' => $b, 'blogs' => $blogs ) ); die();
+		//print_r( array( 'b' => $b, 'blogs' => $blogs ) ); die();
 		
 		// loop through them
 		foreach ( $blogs->blogs as $key => $blog ) {
@@ -1316,6 +1333,9 @@ class CommentPressBuddyPress {
 		// filter bp-groupblog defaults
 		add_filter( 'bp_groupblog_subnav_item_name', array( $this, 'filter_blog_name' ), 20 );
 		add_filter( 'bp_groupblog_subnav_item_slug', array( $this, 'filter_blog_slug' ), 20 );
+		
+		// override Commentpress "Title Page"
+		add_filter( 'cp_nav_title_page_title', array( $this, 'filter_nav_title_page_title' ), 20 );
 		
 		// override BP title of "visit site" button in blog lists
 		add_filter( 'bp_get_blogs_visit_blog_button', array( $this, 'get_blogs_visit_blog_button' ), 20 );
